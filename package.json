@@ -1,7 +1,7 @@
 {
   "name": "webmapadmin",
   "version": "0.1.0",
-  "homepage" : "https://tootman.github.io/WebMapDashboard/build",
+  "homepage" : "https://tootman.github.io/WebMapDashboard",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.1",
