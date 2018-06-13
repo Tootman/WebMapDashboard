@@ -16,8 +16,8 @@ import {
 	DropdownMenu,
 	DropdownItem
 } from "reactstrap";
-import {init as firebaseInit, Login} from './components/firebase';
-import registerServiceWorker  from './registerServiceWorker';
+import { init as firebaseInit, Login } from "./components/firebase";
+import registerServiceWorker from "./registerServiceWorker";
 
 class App extends Component {
 	/*
@@ -44,7 +44,6 @@ class App extends Component {
 		};
 		firebaseInit();
 		registerServiceWorker();
-		
 	}
 
 	toggle() {
@@ -130,27 +129,40 @@ class App extends Component {
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className="ml-auto" navbar>
 								<NavItem>
-									<NavLink href="/components/">
+									<NavLink href="/TableView/">
 										Table view
 									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="https://github.com/reactstrap/reactstrap">
-										Map view
-									</NavLink>
+									<NavLink href="/MapView/" >Map view</NavLink>
+								</NavItem>
+								<NavItem>
+									<NavLink href="/User/">User</NavLink>
 								</NavItem>
 								<UncontrolledDropdown nav inNavbar>
 									<DropdownToggle nav caret>
 										Tools
 									</DropdownToggle>
 									<DropdownMenu right>
-										<DropdownItem>Import  ShapeFile</DropdownItem>
-										<DropdownItem>Export Shapefile</DropdownItem>
-										<DropdownItem>Upload new map to Cloud</DropdownItem>
+										<DropdownItem
+											href="/ImportShapeFile"	
+										>
+											Import ShapeFile
+										</DropdownItem>
+										<DropdownItem href="/ExportShapeFile">
+											Export Shapefile
+										</DropdownItem>
+										<DropdownItem href="/uploadNewMap">
+											Upload new map to Cloud
+										</DropdownItem>
 										<DropdownItem divider />
-										<DropdownItem>Help</DropdownItem>
-										<DropdownItem>Getting started</DropdownItem>
-										<DropdownItem>More info on ORCL</DropdownItem>
+										<DropdownItem href="/Help"> Help </DropdownItem>
+										<DropdownItem href="/gettingStarted">
+											Getting started
+										</DropdownItem>
+										<DropdownItem href="/ORCLInfo">
+											More info on ORCL
+										</DropdownItem>
 									</DropdownMenu>
 								</UncontrolledDropdown>
 							</Nav>
@@ -158,9 +170,18 @@ class App extends Component {
 					</Navbar>
 
 					<header className="App-header">
-						<h1 className="App-title"> ORCL Mapping App dashboard  </h1>
+						<h1 className="App-title">
+							{" "}
+							ORCL Mapping App dashboard{" "}
+						</h1>
 					</header>
-					<Login/>
+					<Route path="/products" component={Products} />
+					<Route path="/User" component={User} />
+					<Route path="/TableView" component={TableView} />
+					<Route path="/MapView" component={MapView} />
+					<Route path="/ImportShapeFile" component={ImportShapeFile} />
+					<Route path="/ExportShapeFile" component={ExportShapeFile} />
+					<Route exact path='/' component={Home} />
 					{/* <p className="App-intro"> Speed is {this.state.speed}</p>
 				<Mycomponent
 					myprop={this.state.speed}
@@ -178,5 +199,65 @@ class App extends Component {
 		);
 	}
 }
+
+/* Products component */
+const Products = () => (
+	<div>
+		<h2>Products</h2>
+
+	</div>
+
+);
+
+/* user component - log in /out */
+const User = () => (
+	<div>
+		<h2>User</h2>
+		<p> email and password form goes here</p>
+		<Login />
+	</div>
+);
+
+
+const TableView = () => (
+	<div>
+		<h2>TableView</h2>
+		<p> Table View and Treeview / object inspector goes here - view data of current map</p>
+		<p> View related data of a selected feature/Asset </p>
+	</div>
+);
+
+ 
+const MapView = () => (
+	<div>
+		<h2>MapView</h2>
+		<p> basic Leaflet map goes here - view current map</p>
+	</div>
+);
+
+
+const ImportShapeFile = () => (
+	<div>
+		<h2>Import Shape file</h2>
+		<p> Browse to a file on local drive</p>
+	</div>
+);
+
+const ExportShapeFile = () => (
+	<div>
+		<h2>Export Shape file</h2>
+		<p> Export the current map to Shapefile (and to GeoJSON)</p>
+	</div>
+);
+
+const Home = () => (
+	<div>
+		<h2>Welcome to ORCL WebMap Admin console</h2>
+		<p> what do you want to do?</p>
+	</div>
+);
+
+
+
 
 export default App;
