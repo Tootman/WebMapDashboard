@@ -5,6 +5,7 @@ import App from './App';
 import { myOb } from './Djs'; // test module
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const fireBaseconfig = {
@@ -16,6 +17,7 @@ const fireBaseconfig = {
     messagingSenderId: "546067641349"
 };
 firebase.initializeApp(fireBaseconfig);
+const database = firebase.database();
 
 console.log(myOb)
 ReactDOM.render( < App / > , document.getElementById('root'));
